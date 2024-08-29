@@ -36,19 +36,26 @@ print_manage_menu( 'manage_plugin_page.php' );
             <div>
                 <form class="form-horizontal" role="form" method="post"
                       action="<?php echo plugin_page( 'config_update' ) ?>">
-					<?php echo form_security_field( 'plugin_GoogleOauth_config_update' ) ?>
+					<?php echo form_security_field( 'plugin_MantisOIC_config_update' ) ?>
+					<div class="form-group">
+						<label for="oidaurl" class="col-sm-3 control-label">OpenID Auth URL</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="oidaurl" name="oidaurl" placeholder="OpenID Auth URL"
+								   value="<?php echo plugin_config_get( 'openIDAuthURL' ); ?>">
+						</div>
+					</div>
                     <div class="form-group">
-                        <label for="prefIP" class="col-sm-3 control-label">GoogleAPI Client ID</label>
+                        <label for="oidclientid" class="col-sm-3 control-label">OpenID Client ID</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="prefClientID" placeholder="Client ID"
-                                   value="<?php echo plugin_config_get( 'clientId' ); ?>">
+                            <input type="text" class="form-control" id="oidclientid" name="oidclientid" placeholder="OpenID Client ID"
+                                   value="<?php echo plugin_config_get( 'openIDClientID' ); ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="prefPORT" class="col-sm-3 control-label">GoogleAPI Client Secret</label>
+                        <label for="oidsecret" class="col-sm-3 control-label">OpenID Client Secret</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="prefClientSecret" placeholder="Client Secret"
-                                   value="<?php echo plugin_config_get( 'clientSecret' ); ?>">
+                            <input type="text" class="form-control" id="oidsecret" name="oidsecret" placeholder="Client Secret"
+                                   value="<?php echo plugin_config_get( 'openIDClientSecret' ); ?>">
                         </div>
                     </div>
                     <div class="form-group">

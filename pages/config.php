@@ -5,7 +5,7 @@ access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 $headerHeightOptions = array( 'Default', 'Small', 'Tiny' );
 $skinOptions         = array( 'poser Default', 'Flat', 'MantisMan' );
 
-layout_page_header( lang_get( 'plugin_format_title' ) );
+layout_page_header( plugin_lang_get( 'title' ) );
 
 layout_page_begin( 'manage_overview_page.php' );
 

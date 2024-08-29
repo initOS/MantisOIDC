@@ -1,0 +1,6 @@
+<?php
+
+$s_plugin_MantisOIC_title = 'Mantis OpenID Connect';
+$s_plugin_MantisOIC_save = 'Speichern';
+$s_plugin_MantisOIC_login = 'Anmelden';
+

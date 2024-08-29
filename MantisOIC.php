@@ -10,7 +10,7 @@ class MantisOICPlugin extends MantisPlugin {
 		$this->description = 'Add OpenID-Connect authentication to MantisBT. Fork of GoogleOauth plugin by Alleen Wang wchwch@gmail.com';
 		$this->page        = 'config';
 
-		$this->version  = '2.1';
+		$this->version  = '1.0';
 		$this->requires = array(
 			'MantisCore' => '2.0.0',
 		);
@@ -38,7 +38,7 @@ class MantisOICPlugin extends MantisPlugin {
 		return array(
 			'clientId'     => '',
 			'clientSecret' => '',
-			'redirect_uri' => '',
+			'redirect_uri' => '', # is set once the config page is saved
 		);
 	}
 

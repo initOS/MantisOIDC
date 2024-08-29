@@ -51,13 +51,13 @@ class MantisOICPlugin extends MantisPlugin {
 			<meta name="redirectUri" content="' . plugin_config_get( 'redirect_uri' ) . '" />
 			<meta name="clientId" content="' . plugin_config_get( 'clientId' ) . '" />
 			<style>
-			#plugin_googleoauth {
+			#plugin_mantisoic {
 				margin-top:20px;
 				padding-top:20px;
 				border-top: 1px solid #CCC;
 				text-align:right;
 				}
-				#plugin_googleoauth a {
+				#plugin_mantisoic a {
 						background: url('.plugin_file("google_signin.png").')  -0 -0;;
 						text-indent: 100%;
 						white-space: nowrap;
@@ -67,7 +67,7 @@ class MantisOICPlugin extends MantisPlugin {
 						width: 191px;
 						margin-right:25px;
 				}
-				#plugin_googleoauth a:hover {
+				#plugin_mantisoic a:hover {
 						background: url('.plugin_file("google_signin.png").') -0 -46px;
 						width: 191px;
 						height: 46px;

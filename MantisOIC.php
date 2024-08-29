@@ -1,13 +1,13 @@
 <?php
 
-class GoogleOauthPlugin extends MantisPlugin {
+class MantisOICPlugin extends MantisPlugin {
 
 	var $cmv_pages;
 	var $current_page;
 
 	function register() {
-		$this->name        = 'Google Authentication Module';
-		$this->description = 'Add Google authentication to MantisBT.';
+		$this->name        = 'Mantis OpenID-Connect';
+		$this->description = 'Add OpenID-Connect authentication to MantisBT. Fork of GoogleOauth plugin by Alleen Wang wchwch@gmail.com';
 		$this->page        = 'config';
 
 		$this->version  = '2.1';
@@ -15,9 +15,9 @@ class GoogleOauthPlugin extends MantisPlugin {
 			'MantisCore' => '2.0.0',
 		);
 
-		$this->author  = 'Alleen Wang';
-		$this->contact = 'wchwch@gmail.com';
-		$this->url     = 'https://github.com/mantisbt-plugins/GoogleOauth';
+		$this->author  = 'FSD-Christian-ADM';
+		$this->contact = '13xisw13yl2@fsd-web.de';
+		$this->url     = 'https://github.com/FSD-Christian-ADM/MantisOIC';
 	}
 
 	function init() {

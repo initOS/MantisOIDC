@@ -10,7 +10,7 @@ class MantisOICPlugin extends MantisPlugin {
 		$this->description = 'Add OpenID-Connect authentication to MantisBT. Fork of GoogleOauth plugin by Alleen Wang wchwch@gmail.com';
 		$this->page        = 'config';
 
-		$this->version  = '1.0';
+		$this->version  = '0.9';
 		$this->requires = array(
 			'MantisCore' => '2.0.0',
 		);
@@ -51,27 +51,45 @@ class MantisOICPlugin extends MantisPlugin {
 			<meta name="redirectUri" content="' . plugin_config_get( 'redirect_uri' ) . '" />
 			<meta name="clientId" content="' . plugin_config_get( 'clientId' ) . '" />
 			<style>
-			#plugin_mantisoic {
-				margin-top:20px;
-				padding-top:20px;
-				border-top: 1px solid #CCC;
-				text-align:right;
+			
+			    #plugin_mantisoic_separator {
+                  display: flex;
+                  align-items: center;
+                  text-align: center;
+                }
+                
+                #plugin_mantisoic_separator::before,
+                #plugin_mantisoic_separator::after {
+                  content: "";
+                  flex: 1;
+                  border-bottom: 1px solid #000;
+                }
+                
+                #plugin_mantisoic_separator:not(:empty)::before {
+                  margin-right: .25em;
+                }
+                
+                #plugin_mantisoic_separator:not(:empty)::after {
+                  margin-left: .25em;
+                }
+			
+							
+				#plugin_mantisoic_keycloak_button {
+				        background-color: #008aaa;
+				        color: white;
+				        display:flex;				        
+				        padding: 1rem;
+				        padding-left: 2rem;
+				        border-radius: 5rem;
+				        align-items: center;
+				        font-size: 110%;				        
 				}
-				#plugin_mantisoic a {
-						background: url('.plugin_file("google_signin.png").')  -0 -0;;
-						text-indent: 100%;
-						white-space: nowrap;
-						overflow: hidden;
-						display: inline-block;
-						height: 46px;
-						width: 191px;
-						margin-right:25px;
+				
+				#plugin_mantisoic_keycloak_button:before {
+				        content: url('.plugin_file("keycloak_logo.png").');
+				        margin-right: 1rem;				        
 				}
-				#plugin_mantisoic a:hover {
-						background: url('.plugin_file("google_signin.png").') -0 -46px;
-						width: 191px;
-						height: 46px;
-				}
+				
 			</style>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
 		';

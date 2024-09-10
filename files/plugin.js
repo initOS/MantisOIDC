@@ -7,10 +7,10 @@ $(document).ready(function () {
     //var url = window.location.href
     //var state = ( url.match(/\?(.+)$/) || [,''])[1];
     // Send just the return param value
-    var urlParams = new URLSearchParams(window.location.search);
-    var state = urlParams.get('return') || '';
-    var html = '<div id="plugin_mantisoic">\
-        <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=' + redirectUri + '&client_id=' + clientId + '&scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent&state=' + state + '">Sign in with google</a>\
-        </div>';
+    var keycloak_gate = "blank_";
+
+    var html = '<div id="plugin_mantisoic_separator">ODER</div>' +
+        '<a id="plugin_mantisoic_keycloak_button" href="' + keycloak_gate + '">Login with KeyCloak</a>' +
+    '';
     $(html).insertAfter('#login-form');
 });

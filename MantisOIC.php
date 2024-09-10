@@ -50,6 +50,7 @@ class MantisOICPlugin extends MantisPlugin {
 		return '
 			<meta name="redirectUri" content="' . plugin_config_get( 'redirect_uri' ) . '" />
 			<meta name="clientId" content="' . plugin_config_get( 'clientId' ) . '" />
+			<meta name="oicStart" content="' . plugin_page( 'oicStart' ) . '" />
 			<style>
 			
 			    #plugin_mantisoic_separator {

@@ -1,53 +1,51 @@
 <?php
 
-require_once 'assets/lib/google-api-php-client/vendor/autoload.php';
-require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core.php';
-require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'core/gpc_api.php';
-require_once dirname( dirname( dirname( dirname( __FILE__ ) ) ) ). DIRECTORY_SEPARATOR . 'plugins/GoogleOauth/GoogleOauth.php';
 
-$client = new Google_Client();
+    require_once 'assets/lib/OpenID-Connect-PHP/vendor/autoload.php';
+    use Jumbojett\OpenIDConnectClient;
 
-$client->setApplicationName("MantisBT Google authentication module");
-$client->setClientId(config_get( 'plugin_GoogleOauth_clientId' ));
-$client->setClientSecret(config_get( 'plugin_GoogleOauth_clientSecret' ));
-$client->setRedirectUri(config_get( 'plugin_GoogleOauth_redirect_uri'));
 
-$objOAuthService = new Google_Service_Oauth2($client);
+    plugin_register('MantisOIC');
 
-if (isset($_GET['code'])) {
-    $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    $_SESSION['access_token'] = $client->getAccessToken();
-    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-}
+    $OPENID_CLIENT_ID = plugin_config_get('openIDClientID' );
 
-if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-    $client->setAccessToken($_SESSION['access_token']);
-}
+    $oidc = new OpenIDConnectClient(
+        plugin_config_get('openIDAuthURL' ),
+        $OPENID_CLIENT_ID,
+        plugin_config_get('openIDClientSecret' )
+    );
 
-if ($client->getAccessToken())
-{
-    $userData = $objOAuthService->userinfo->get();
-    $data['userData'] = $userData;
-    $_SESSION['access_token'] = $client->getAccessToken();
-}
+    $oidc->setRedirectUrl(plugin_config_get('redirect_uri' ));
 
-$user_id = user_get_id_by_email( $userData->email );
+    $oidc->authenticate();
+
+    $sessionUserDisplayName = explode(" ", $oidc->requestUserInfo('name'));
+
+
+    $access_token = $oidc->getAccessToken();
+
+    $data = $oidc->introspectToken($access_token);
+
+
+
+
+$user_id = user_get_id_by_name($data->username);
 
 # check for disabled account
 if( !user_is_enabled( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+    echo "<p>Username not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
     return false;
 }
 
 # max. failed login attempts achieved...
 if( !user_is_login_request_allowed( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+    echo "<p>Username not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
     return false;
 }
 
 # check for anonymous login
 if( user_is_anonymous( $user_id ) ) {
-    echo "<p>Email address not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
+    echo "<p>Username not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
     return false;
 }
 
@@ -62,11 +60,6 @@ auth_set_tokens( $user_id );
 
 // Obtain the redicrect url from state param
 // Example: state=view.php?id=2222
-if (isset($_GET['state'])) {
-    $return_path = $_GET['state'];
-    $redirect_url = '../../../' . $return_path;
-} else {
-    $redirect_url = '../../../index.php';
-}
+$redirect_url = '../../../index.php';
 
 print_header_redirect( $redirect_url );

@@ -1,0 +1,20 @@
+<?php
+
+    require_once 'assets/lib/OpenID-Connect-PHP/vendor/autoload.php';
+    use Jumbojett\OpenIDConnectClient;
+
+
+    plugin_register('MantisOIC');
+
+
+    $oidc = new OpenIDConnectClient(
+        plugin_config_get('openIDAuthURL' ),
+        plugin_config_get('openIDClientID' ),
+        plugin_config_get('openIDClientSecret' )
+    );
+
+
+    $oidc->setRedirectUrl(plugin_config_get('redirect_uri' ));
+
+
+    $oidc->authenticate();

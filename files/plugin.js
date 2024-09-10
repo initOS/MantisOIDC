@@ -3,6 +3,7 @@ $(document).ready(function () {
     //include input for new password
     var redirectUri = $("meta[name='redirectUri']").attr('content');
     var clientId = $("meta[name='clientId']").attr('content');
+    var oicStart = $("meta[name='oicStart']").attr('content');
     // (disabled) Send all the params
     //var url = window.location.href
     //var state = ( url.match(/\?(.+)$/) || [,''])[1];
@@ -10,7 +11,7 @@ $(document).ready(function () {
     var keycloak_gate = "blank_";
 
     var html = '<div id="plugin_mantisoic_separator">ODER</div>' +
-        '<a id="plugin_mantisoic_keycloak_button" href="' + keycloak_gate + '">Login with KeyCloak</a>' +
+        '<a id="plugin_mantisoic_keycloak_button" href="' +oicStart+ '">Login with KeyCloak</a>' +
     '';
     $(html).insertAfter('#login-form');
 });

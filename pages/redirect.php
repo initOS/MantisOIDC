@@ -29,28 +29,44 @@
 
     $data = $oidc->introspectToken($access_token);
 
+    $user_id = user_get_id_by_name($data->username."fail");
 
-
-
-$user_id = user_get_id_by_name($data->username);
+    $login_success = true;
 
 # check for disabled account
 if( !user_is_enabled( $user_id ) ) {
-    echo "<p>Username not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
-    return false;
+    $login_success = false;
 }
 
 # max. failed login attempts achieved...
 if( !user_is_login_request_allowed( $user_id ) ) {
-    echo "<p>Username not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
-    return false;
+    $login_success = false;
 }
 
 # check for anonymous login
 if( user_is_anonymous( $user_id ) ) {
-    echo "<p>Username not registered. Please register new account first. <br/> <a href='/login_page.php'>Login</a>";
-    return false;
+    $login_success = false;
 }
+
+
+if(false === $login_success) {
+
+    layout_login_page_begin();
+    echo '<div class="col-md-offset-3 col-md-6 col-sm-10 col-sm-offset-1">
+	        <div class="login-container">
+		      <div class="space-12 hidden-480"></div>'.
+              layout_login_page_logo().
+		     '<div class="space-24 hidden-480"></div>    
+             <div class="alert alert-danger"><p>' . sprintf(plugin_lang_get( 'user_not_available' ), string_html_specialchars( config_get_global( 'webmaster_email' ) ) ) . '</p></div>             
+           </div>
+          </div>';
+
+    layout_login_page_end();
+
+    return false;
+
+}
+
 
 user_increment_login_count( $user_id );
 

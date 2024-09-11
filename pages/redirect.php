@@ -29,7 +29,7 @@
 
     $data = $oidc->introspectToken($access_token);
 
-    $user_id = user_get_id_by_name($data->username."fail");
+    $user_id = user_get_id_by_name($data->username);
 
     $login_success = true;
 

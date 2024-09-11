@@ -1,5 +1,8 @@
 <?php
 
+    session_start();
+    $get_stash = $_SESSION["plugin_MantisOIC_get_param_stash"];
+
 
     require_once 'assets/lib/OpenID-Connect-PHP/vendor/autoload.php';
     use Jumbojett\OpenIDConnectClient;
@@ -60,6 +63,13 @@ auth_set_tokens( $user_id );
 
 // Obtain the redicrect url from state param
 // Example: state=view.php?id=2222
-$redirect_url = '../../../index.php';
+$redirect_url = '../../../';
+
+// add get-params if the user was about to access a certain page
+if(!empty($get_stash) && isset($get_stash["return"])) {
+    $redirect_url .= $get_stash["return"];
+} else {
+    $redirect_url .= "index.php";
+}
 
 print_header_redirect( $redirect_url );

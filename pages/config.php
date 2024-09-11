@@ -20,16 +20,10 @@ print_manage_menu( 'manage_plugin_page.php' );
 
                 <ol>
                     <li>
-                        Create a new project in the <a target="_blank" rel="noopener" href="https://console.developers.google.com/apis/credentials">Google
-                            Developers console</a>
+                        Create a new client in your OpenIDConnect environment
                     </li>
-                    <li>Under API Manager, select Credentials and create a new OAuth client ID from the 'Create
-                        Credentials'
-                        button, using the below details as appropriate:
-                        <ul>
-                            <li>Authorized Javascript origin: <?php echo config_get( 'path' ); ?></li>
-                            <li>Authorized redirect URI: <?php echo plugin_config_get( 'redirect_uri' ); ?></li>
-                        </ul>
+                    <li>Use the following redirect URL<br>
+						<code><?php echo substr(config_get('path'), 0, -1).plugin_page( 'redirect'); ?></code>
                     </li>
                 </ol>
             </div>
@@ -58,6 +52,15 @@ print_manage_menu( 'manage_plugin_page.php' );
                                    value="<?php echo plugin_config_get( 'openIDClientSecret' ); ?>">
                         </div>
                     </div>
+
+					<div class="form-group">
+						<label for="login_button_text" class="col-sm-3 control-label">Text for Login-Button</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="login_button_text" name="login_button_text" placeholder="Login Button Text"
+								   value="<?php echo plugin_config_get( 'login_button_text' ); ?>">
+						</div>
+					</div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-8">
                             <input id="submit" name="submit" type="submit"
@@ -65,6 +68,9 @@ print_manage_menu( 'manage_plugin_page.php' );
                                    class="btn btn-primary">
                         </div>
                     </div>
+
+
+
                 </form>
             </div>
         </div>

@@ -7,6 +7,7 @@ access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 plugin_config_set('openIDAuthURL', strip_tags(gpc_get_string('oidaurl')));
 plugin_config_set('openIDClientID', strip_tags(gpc_get_string('oidclientid')));
 plugin_config_set('openIDClientSecret', strip_tags(gpc_get_string('oidsecret')));
+plugin_config_set('login_button_text', strip_tags(gpc_get_string('login_button_text')));
 
 $redirecturi = config_get('path');
 if(substr($redirecturi, -1) == '/') $redirecturi = rtrim($redirecturi,'/');

@@ -57,13 +57,15 @@ class MantisOICPlugin extends MantisPlugin {
                   display: flex;
                   align-items: center;
                   text-align: center;
+                  margin-block: 1rem;;
+                  color: #889;
                 }
                 
                 #plugin_mantisoic_separator::before,
                 #plugin_mantisoic_separator::after {
                   content: "";
                   flex: 1;
-                  border-bottom: 1px solid #000;
+                  border-bottom: 1px solid #889;
                 }
                 
                 #plugin_mantisoic_separator:not(:empty)::before {
@@ -75,23 +77,31 @@ class MantisOICPlugin extends MantisPlugin {
                 }
 			
 							
-				#plugin_mantisoic_keycloak_button {
+				#plugin_mantisoic_login_button {				        
 				        background-color: #008aaa;
 				        color: white;
-				        display:flex;				        
+				        display:grid;				        
 				        padding: 1rem;
 				        padding-left: 2rem;
 				        border-radius: 5rem;
-				        align-items: center;
+				        place-items: center;
 				        font-size: 110%;				        
 				}
 				
-				#plugin_mantisoic_keycloak_button:before {
-				        content: url('.plugin_file("keycloak_logo.png").');
-				        margin-right: 1rem;				        
-				}
+				#plugin_mantisoic_login_button::before {				
+				    content:"'.plugin_config_get('login_button_text', plugin_lang_get('login_button_default')).'";
+                }
+                
+                #plugin_mantisoic_login_button:hover {
+                    text-decoration: none;
+                    background-color: #006888;
+                }
+				
 				
 			</style>
+			<script type="text/javascript">
+			    var plugin_MantisOIC_seperator_text = "'. plugin_lang_get('seperator_text') .'"
+            </script>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
 		';
 	}

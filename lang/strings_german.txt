@@ -2,5 +2,5 @@
 
 $s_plugin_MantisOIC_title = 'Mantis OpenID Connect';
 $s_plugin_MantisOIC_save = 'Speichern';
-$s_plugin_MantisOIC_login = 'Anmelden';
-
+$s_plugin_MantisOIC_login_button_default = 'Anmelden';
+$s_plugin_MantisOIC_seperator_text = 'ODER';

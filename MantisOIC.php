@@ -101,6 +101,7 @@ class MantisOICPlugin extends MantisPlugin {
 			</style>
 			<script type="text/javascript">
 			    var plugin_MantisOIC_seperator_text = "'. plugin_lang_get('seperator_text') .'"
+			    var hide_credentials_login = ' .plugin_config_get('hide_credentials_login', 'false'). ';
             </script>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
 		';

@@ -61,6 +61,14 @@ print_manage_menu( 'manage_plugin_page.php' );
 						</div>
 					</div>
 
+					<div class="form-group">
+						<label for="hide_credentials_login" class="col-sm-3 control-label">Hide Credentials Login</label>
+						<div class="col-sm-7">
+							<input type="checkbox" class="form-control" id="hide_credentials_login" name="hide_credentials_login"
+								   value="hide_credentials_login" <?php if ("true" == plugin_config_get( 'hide_credentials_login' )) echo "checked"; ?>>
+						</div>
+					</div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-8">
                             <input id="submit" name="submit" type="submit"

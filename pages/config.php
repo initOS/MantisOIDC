@@ -48,7 +48,7 @@ print_manage_menu( 'manage_plugin_page.php' );
                     <div class="form-group">
                         <label for="oidsecret" class="col-sm-3 control-label">OpenID Client Secret</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="oidsecret" name="oidsecret" placeholder="Client Secret"
+                            <input type="password" class="form-control" id="oidsecret" name="oidsecret" placeholder="Client Secret"
                                    value="<?php echo plugin_config_get( 'openIDClientSecret' ); ?>">
                         </div>
                     </div>

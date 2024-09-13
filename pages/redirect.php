@@ -1,5 +1,6 @@
 <?php
 
+    // retrieve the data for the desired page a user wants to access. it is here at the beginning because a successful login will start a new (maybe empty) session
     session_start();
     $get_stash = $_SESSION["plugin_MantisOIC_get_param_stash"];
 
@@ -10,6 +11,7 @@
 
     plugin_register('MantisOIC');
 
+    // we have to so this all over again to access the data in the token
     $OPENID_CLIENT_ID = plugin_config_get('openIDClientID' );
 
     $oidc = new OpenIDConnectClient(
@@ -22,70 +24,71 @@
 
     $oidc->authenticate();
 
-    $sessionUserDisplayName = explode(" ", $oidc->requestUserInfo('name'));
-
 
     $access_token = $oidc->getAccessToken();
 
     $data = $oidc->introspectToken($access_token);
 
+
+
     $user_id = user_get_id_by_name($data->username);
 
     $login_success = true;
 
-# check for disabled account
-if( !user_is_enabled( $user_id ) ) {
-    $login_success = false;
-}
+    # check for disabled account
+    if( !user_is_enabled( $user_id ) ) {
+        $login_success = false;
+    }
 
-# max. failed login attempts achieved...
-if( !user_is_login_request_allowed( $user_id ) ) {
-    $login_success = false;
-}
+    # max. failed login attempts achieved...
+    if( !user_is_login_request_allowed( $user_id ) ) {
+        $login_success = false;
+    }
 
-# check for anonymous login
-if( user_is_anonymous( $user_id ) ) {
-    $login_success = false;
-}
-
-
-if(false === $login_success) {
-
-    layout_login_page_begin();
-    echo '<div class="col-md-offset-3 col-md-6 col-sm-10 col-sm-offset-1">
-	        <div class="login-container">
-		      <div class="space-12 hidden-480"></div>'.
-              layout_login_page_logo().
-		     '<div class="space-24 hidden-480"></div>    
-             <div class="alert alert-danger"><p>' . sprintf(plugin_lang_get( 'user_not_available' ), string_html_specialchars( config_get_global( 'webmaster_email' ) ) ) . '</p></div>             
-           </div>
-          </div>';
-
-    layout_login_page_end();
-
-    return false;
-
-}
+    # check for anonymous login
+    if( user_is_anonymous( $user_id ) ) {
+        $login_success = false;
+    }
 
 
-user_increment_login_count( $user_id );
+    // user is not able to access MantisBT. Show error message
+    if(false === $login_success) {
 
-user_reset_failed_login_count_to_zero( $user_id );
-user_reset_lost_password_in_progress_count_to_zero( $user_id );
+        layout_login_page_begin();
+        echo '<div class="col-md-offset-3 col-md-6 col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+                  <div class="space-12 hidden-480"></div>'.
+                  layout_login_page_logo().
+                 '<div class="space-24 hidden-480"></div>    
+                 <div class="alert alert-danger"><p>' . sprintf(plugin_lang_get( 'user_not_available' ), string_html_specialchars( config_get_global( 'webmaster_email' ) ) ) . '</p></div>             
+               </div>
+              </div>';
 
-# set the cookies
-auth_set_cookies( $user_id, false );
-auth_set_tokens( $user_id );
+        layout_login_page_end();
 
-// Obtain the redicrect url from state param
-// Example: state=view.php?id=2222
-$redirect_url = '../../../';
+        return false;
 
-// add get-params if the user was about to access a certain page
-if(!empty($get_stash) && isset($get_stash["return"])) {
-    $redirect_url .= $get_stash["return"];
-} else {
-    $redirect_url .= "index.php";
-}
+    }
 
-print_header_redirect( $redirect_url );
+
+    user_increment_login_count( $user_id );
+
+    user_reset_failed_login_count_to_zero( $user_id );
+    user_reset_lost_password_in_progress_count_to_zero( $user_id );
+
+    # set the cookies
+    auth_set_cookies( $user_id, false );
+    auth_set_tokens( $user_id );
+
+    // Obtain the redicrect url
+    // Example: state=view.php?id=2222
+    $redirect_url = '../../../';
+
+    // add get-params if the user was about to access a certain page
+    if(!empty($get_stash) && isset($get_stash["return"])) {
+        $redirect_url .= $get_stash["return"];
+    } else {
+        $redirect_url .= "index.php";
+    }
+
+    print_header_redirect( $redirect_url );

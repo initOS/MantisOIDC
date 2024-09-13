@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     var oicStart = $("meta[name='oicStart']").attr('content');
 
+    // make to sure to pass through deep link GET params
     var get_stash = window.location.search.substr(1);
 
     var html = '';

@@ -1,6 +1,6 @@
 <?php
 
-class MantisOICPlugin extends MantisPlugin {
+class MantisOIDCPlugin extends MantisPlugin {
 
 	var $cmv_pages;
 	var $current_page;
@@ -17,7 +17,7 @@ class MantisOICPlugin extends MantisPlugin {
 
 		$this->author  = 'FSD-Christian-ADM';
 		$this->contact = '13xisw13yl2@fsd-web.de';
-		$this->url     = 'https://github.com/FSD-Christian-ADM/MantisOIC';
+		$this->url     = 'https://github.com/FSD-Christian-ADM/MantisOIDC';
 	}
 
 	function init() {
@@ -48,10 +48,10 @@ class MantisOICPlugin extends MantisPlugin {
 		}
 
 		return '
-			<meta name="oicStart" content="' . plugin_page( 'oicStart' ) . '" />
+			<meta name="oidcStart" content="' . plugin_page( 'oidcStart' ) . '" />
 			<style>
 			
-			    #plugin_mantisoic_separator {
+			    #plugin_mantisoidc_separator {
                   display: flex;
                   align-items: center;
                   text-align: center;
@@ -59,23 +59,23 @@ class MantisOICPlugin extends MantisPlugin {
                   color: #889;
                 }
                 
-                #plugin_mantisoic_separator::before,
-                #plugin_mantisoic_separator::after {
+                #plugin_mantisoidc_separator::before,
+                #plugin_mantisoidc_separator::after {
                   content: "";
                   flex: 1;
                   border-bottom: 1px solid #889;
                 }
                 
-                #plugin_mantisoic_separator:not(:empty)::before {
+                #plugin_mantisoidc_separator:not(:empty)::before {
                   margin-right: .25em;
                 }
                 
-                #plugin_mantisoic_separator:not(:empty)::after {
+                #plugin_mantisoidc_separator:not(:empty)::after {
                   margin-left: .25em;
                 }
 			
 							
-				#plugin_mantisoic_login_button {				        
+				#plugin_mantisoidc_login_button {				        
 				        background-color: #008aaa;
 				        color: white;
 				        display:grid;				        
@@ -86,11 +86,11 @@ class MantisOICPlugin extends MantisPlugin {
 				        font-size: 110%;				        
 				}
 				
-				#plugin_mantisoic_login_button::before {				
+				#plugin_mantisoidc_login_button::before {				
 				    content:"'.plugin_config_get('login_button_text', plugin_lang_get('login_button_default')).'";
                 }
                 
-                #plugin_mantisoic_login_button:hover {
+                #plugin_mantisoidc_login_button:hover {
                     text-decoration: none;
                     background-color: #006888;
                 }
@@ -98,7 +98,7 @@ class MantisOICPlugin extends MantisPlugin {
 				
 			</style>
 			<script type="text/javascript">
-			    var plugin_MantisOIC_seperator_text = "'. plugin_lang_get('seperator_text') .'"
+			    var plugin_MantisOIDC_seperator_text = "'. plugin_lang_get('seperator_text') .'"
 			    var hide_credentials_login = ' .plugin_config_get('hide_credentials_login', 'false'). ';
             </script>
 			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>

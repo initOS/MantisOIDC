@@ -30,7 +30,7 @@ print_manage_menu( 'manage_plugin_page.php' );
             <div>
                 <form class="form-horizontal" role="form" method="post"
                       action="<?php echo plugin_page( 'config_update' ) ?>">
-					<?php echo form_security_field( 'plugin_MantisOIC_config_update' ) ?>
+					<?php echo form_security_field( 'plugin_MantisOIDC_config_update' ) ?>
 					<div class="form-group">
 						<label for="oidaurl" class="col-sm-3 control-label">OpenID Auth URL</label>
 						<div class="col-sm-7">

@@ -2,14 +2,14 @@
 
     // retrieve the data for the desired page a user wants to access. it is here at the beginning because a successful login will start a new (maybe empty) session
     session_start();
-    $get_stash = $_SESSION["plugin_MantisOIC_get_param_stash"];
+    $get_stash = $_SESSION["plugin_MantisOIDC_get_param_stash"];
 
 
     require_once 'assets/lib/OpenID-Connect-PHP/vendor/autoload.php';
     use Jumbojett\OpenIDConnectClient;
 
 
-    plugin_register('MantisOIC');
+    plugin_register('MantisOIDC');
 
     // we have to so this all over again to access the data in the token
     $OPENID_CLIENT_ID = plugin_config_get('openIDClientID' );

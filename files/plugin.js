@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var oicStart = $("meta[name='oicStart']").attr('content');
+    var oidcStart = $("meta[name='oidcStart']").attr('content');
 
     // make to sure to pass through deep link GET params
     var get_stash = window.location.search.substr(1);
@@ -12,10 +12,10 @@ $(document).ready(function () {
         $("#login-form").hide();
 
     } else {
-        html += '<div id="plugin_mantisoic_separator">' + plugin_MantisOIC_seperator_text + '</div>';
+        html += '<div id="plugin_mantisoidc_separator">' + plugin_MantisOIDC_seperator_text + '</div>';
     }
 
-    html += '<a id="plugin_mantisoic_login_button" href="' + oicStart + "&" + get_stash + '"></a>';
+    html += '<a id="plugin_mantisoidc_login_button" href="' + oidcStart + "&" + get_stash + '"></a>';
 
     $(html).insertAfter('#login-form');
 

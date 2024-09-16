@@ -2,13 +2,13 @@
 
     // keep get params for the case the user wants to access a certain page
     session_start();
-    $_SESSION["plugin_MantisOIC_get_param_stash"] = $_GET;
+    $_SESSION["plugin_MantisOIDC_get_param_stash"] = $_GET;
 
     require_once 'assets/lib/OpenID-Connect-PHP/vendor/autoload.php';
     use Jumbojett\OpenIDConnectClient;
 
 
-    plugin_register('MantisOIC');
+    plugin_register('MantisOIDC');
 
 
     $oidc = new OpenIDConnectClient(

@@ -9,6 +9,7 @@ plugin_config_set('openIDClientID', strip_tags(gpc_get_string('oidclientid')));
 plugin_config_set('openIDClientSecret', strip_tags(gpc_get_string('oidsecret')));
 plugin_config_set('login_button_text', strip_tags(gpc_get_string('login_button_text')));
 plugin_config_set('hide_credentials_login', strip_tags(gpc_get_string('hide_credentials_login', 'false')) == "hide_credentials_login" ? "true" : "false");
+plugin_config_set('auto_login', strip_tags(gpc_get_string('auto_login', 'false')) == "auto_login" ? "true" : "false");
 
 $redirecturi = config_get('path');
 if(substr($redirecturi, -1) == '/') $redirecturi = rtrim($redirecturi,'/');

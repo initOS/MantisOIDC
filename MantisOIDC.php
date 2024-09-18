@@ -43,65 +43,76 @@ class MantisOIDCPlugin extends MantisPlugin {
 	}
 
 	function resources() {
-		if ( ! in_array( $this->current_page, $this->cmv_pages ) ) {
-			return '';
-		}
+        if (!in_array($this->current_page, $this->cmv_pages)) {
+            return '';
+        }
 
-		return '
-			<meta name="oidcStart" content="' . plugin_page( 'oidcStart' ) . '" />
-			<style>
-			
-			    #plugin_mantisoidc_separator {
-                  display: flex;
-                  align-items: center;
-                  text-align: center;
-                  margin-block: 1rem;;
-                  color: #889;
-                }
+
+        if ("true" == plugin_config_get('auto_login', FALSE)) {
+            print_header_redirect(plugin_page('oidcStart'));
+        } else {
+
+        $injected_code = '
+                <meta name="oidcStart" content="'.plugin_page('oidcStart').'" />
+                <style>
                 
-                #plugin_mantisoidc_separator::before,
-                #plugin_mantisoidc_separator::after {
-                  content: "";
-                  flex: 1;
-                  border-bottom: 1px solid #889;
-                }
+                    #plugin_mantisoidc_separator {
+                      display: flex;
+                      align-items: center;
+                      text-align: center;
+                      margin-block: 1rem;;
+                      color: #889;
+                    }
+                    
+                    #plugin_mantisoidc_separator::before,
+                    #plugin_mantisoidc_separator::after {
+                      content: "";
+                      flex: 1;
+                      border-bottom: 1px solid #889;
+                    }
+                    
+                    #plugin_mantisoidc_separator:not(:empty)::before {
+                      margin-right: .25em;
+                    }
+                    
+                    #plugin_mantisoidc_separator:not(:empty)::after {
+                      margin-left: .25em;
+                    }
                 
-                #plugin_mantisoidc_separator:not(:empty)::before {
-                  margin-right: .25em;
-                }
-                
-                #plugin_mantisoidc_separator:not(:empty)::after {
-                  margin-left: .25em;
-                }
-			
-							
-				#plugin_mantisoidc_login_button {				        
-				        background-color: #008aaa;
-				        color: white;
-				        display:grid;				        
-				        padding: 1rem;
-				        padding-left: 2rem;
-				        border-radius: 5rem;
-				        place-items: center;
-				        font-size: 110%;				        
-				}
-				
-				#plugin_mantisoidc_login_button::before {				
-				    content:"'.plugin_config_get('login_button_text', plugin_lang_get('login_button_default')).'";
-                }
-                
-                #plugin_mantisoidc_login_button:hover {
-                    text-decoration: none;
-                    background-color: #006888;
-                }
-				
-				
-			</style>
-			<script type="text/javascript">
-			    var plugin_MantisOIDC_seperator_text = "'. plugin_lang_get('seperator_text') .'"
-			    var hide_credentials_login = ' .plugin_config_get('hide_credentials_login', 'false'). ';
-            </script>
-			<script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>
-		';
+                                
+                    #plugin_mantisoidc_login_button {				        
+                            background-color: #008aaa;
+                            color: white;
+                            display:grid;				        
+                            padding: 1rem;
+                            padding-left: 2rem;
+                            border-radius: 5rem;
+                            place-items: center;
+                            font-size: 110%;				        
+                    }
+                    
+                    #plugin_mantisoidc_login_button::before {				
+                        content:"'.plugin_config_get('login_button_text', plugin_lang_get('login_button_default')).'";
+                    }
+                    
+                    #plugin_mantisoidc_login_button:hover {
+                        text-decoration: none;
+                        background-color: #006888;
+                    }
+                    
+                    
+                </style>
+                <script type="text/javascript">
+                    var plugin_MantisOIDC_seperator_text = "'.plugin_lang_get('seperator_text').'"
+                    var hide_credentials_login = '.plugin_config_get('hide_credentials_login', 'false').';
+                </script>
+                <script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>			
+            ';
+
+
+            return $injected_code;
+
+        }
+
 	}
 }

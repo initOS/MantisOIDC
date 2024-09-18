@@ -54,6 +54,14 @@ print_manage_menu( 'manage_plugin_page.php' );
                     </div>
 
 					<div class="form-group">
+						<label for="oidc_role" class="col-sm-3 control-label label-info label-white">User Role<br /><span class="smaller-75">Role in you OIDC system a user has to have, to successfully login into MantisBT. Leave empty if every user is allowed to login (as long as they have an MantisBT account).</span></label>
+						<div class="col-sm-7">
+							<input type="password" class="form-control" id="oidc_role" name="oidc_role" placeholder="Client Secret"
+								   value="<?php echo plugin_config_get( 'oidc_role' ); ?>">
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="login_button_text" class="col-sm-3 control-label label-info label-white">Text for Login-Button<br /><span class="smaller-75">Text displayed on the Login-Button</span></label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="login_button_text" name="login_button_text" placeholder="Login Button Text"
@@ -77,8 +85,10 @@ print_manage_menu( 'manage_plugin_page.php' );
 						</div>
 					</div>
 
+
+
                     <div class="form-group">
-                        <div class="col-sm-offset-6 col-sm-8">
+                        <div class="col-sm-offset-5 col-sm-7">
                             <input id="submit" name="submit" type="submit"
                                    value="<?php echo plugin_lang_get( "save" ) ?>"
                                    class="btn btn-primary">

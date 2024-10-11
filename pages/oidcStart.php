@@ -20,5 +20,6 @@
 
     $oidc->setRedirectUrl(plugin_config_get('redirect_uri' ));
 
+    $oidc->addScope(plugin_config_get('oidc_scopes'));
 
     $oidc->authenticate();

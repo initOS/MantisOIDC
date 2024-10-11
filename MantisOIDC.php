@@ -39,6 +39,9 @@ class MantisOIDCPlugin extends MantisPlugin {
 			'clientId'     => '',
 			'clientSecret' => '',
 			'redirect_uri' => '', # is set once the config page is saved
+			'oidc_scopes' => array('openid'),
+			'oidc_uid_claim' => 'name',
+			'oidc_find_usery_by' => 'name',
 		);
 	}
 

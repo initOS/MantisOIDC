@@ -7,7 +7,7 @@ Features
 How to install
 --------------
 1. Copy MantisOIDC folder into plugins folder.
-2. run `composer install` in plugins/MantisOIDC/pages/lib/OpenID-Connect-PHP to install dependencies
+2. run `composer install` in plugins/MantisOIDC/pages/assets/lib/OpenID-Connect-PHP to install dependencies
 3. Open Mantis with browser.
 4. Log in as administrator.
 5. Go to Manage -> Manage Plugins.

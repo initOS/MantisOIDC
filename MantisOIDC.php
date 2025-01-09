@@ -54,8 +54,8 @@ class MantisOIDCPlugin extends MantisPlugin {
 
         $injected_code = '
                 <meta name="oidcStart" content="'.plugin_page('oidcStart').'" />
-                <meta name="MantisOIDC_seperator_text" content="'.plugin_lang_get('seperator_text').'" />;
-                <meta name="MantisOIDC_hide_credentials_login" content="'.plugin_config_get('hide_credentials_login', 'false').'" />;                    
+                <meta name="MantisOIDC_seperator_text" content="'.plugin_lang_get('seperator_text').'" />
+                <meta name="MantisOIDC_hide_credentials_login" content="'.plugin_config_get('hide_credentials_login', 'false').'" />                    
                 
                 <style>
                 

@@ -54,6 +54,9 @@ class MantisOIDCPlugin extends MantisPlugin {
 
         $injected_code = '
                 <meta name="oidcStart" content="'.plugin_page('oidcStart').'" />
+                <meta name="MantisOIDC_seperator_text" content="'.plugin_lang_get('seperator_text').'" />;
+                <meta name="MantisOIDC_hide_credentials_login" content="'.plugin_config_get('hide_credentials_login', 'false').'" />;                    
+                
                 <style>
                 
                     #plugin_mantisoidc_separator {
@@ -102,10 +105,7 @@ class MantisOIDCPlugin extends MantisPlugin {
                     
                     
                 </style>
-                <script type="text/javascript">
-                    var plugin_MantisOIDC_seperator_text = "'.plugin_lang_get('seperator_text').'"
-                    var hide_credentials_login = '.plugin_config_get('hide_credentials_login', 'false').';
-                </script>
+               
                 <script type="text/javascript" src="'.plugin_file("plugin.js").'"></script>			
             ';
 

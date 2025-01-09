@@ -35,21 +35,21 @@ print_manage_menu( 'manage_plugin_page.php' );
 						<label for="oidaurl" class="col-sm-3 control-label label-info label-white">OpenID Auth URL<br /><span class="smaller-75">The URL Endpoint for your authentication system</span></label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="oidaurl" name="oidaurl" placeholder="OpenID Auth URL"
-								   value="<?php echo plugin_config_get( 'openIDAuthURL' ); ?>">
+								   value="<?php echo plugin_config_get( 'openIDAuthURL', '' ); ?>">
 						</div>
 					</div>
                     <div class="form-group">
                         <label for="oidclientid" class="col-sm-3 control-label label-info label-white">OpenID Client ID<br /><span class="smaller-75">The Name fo the Client you configured in your OIDC system</span></label>
                         <div class="col-sm-7">
                             <input type="text" class="form-control" id="oidclientid" name="oidclientid" placeholder="OpenID Client ID"
-                                   value="<?php echo plugin_config_get( 'openIDClientID' ); ?>">
+                                   value="<?php echo plugin_config_get( 'openIDClientID', '' ); ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="oidsecret" class="col-sm-3 control-label label-info label-white">OpenID Client Secret<br /><span class="smaller-75">The Client's secret/password</span></label>
                         <div class="col-sm-7">
                             <input type="password" class="form-control" id="oidsecret" name="oidsecret" placeholder="Client Secret"
-                                   value="<?php echo plugin_config_get( 'openIDClientSecret' ); ?>">
+                                   value="<?php echo plugin_config_get( 'openIDClientSecret', '' ); ?>">
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@ print_manage_menu( 'manage_plugin_page.php' );
 						<label for="oidc_role" class="col-sm-3 control-label label-info label-white">User Role<br /><span class="smaller-75">Role in you OIDC system a user has to have, to successfully login into MantisBT. Leave empty if every user is allowed to login (as long as they have an MantisBT account).</span></label>
 						<div class="col-sm-7">
 							<input type="password" class="form-control" id="oidc_role" name="oidc_role" placeholder="Client Secret"
-								   value="<?php echo plugin_config_get( 'oidc_role' ); ?>">
+								   value="<?php echo plugin_config_get( 'oidc_role', '' ); ?>">
 						</div>
 					</div>
 
@@ -65,7 +65,7 @@ print_manage_menu( 'manage_plugin_page.php' );
 						<label for="login_button_text" class="col-sm-3 control-label label-info label-white">Text for Login-Button<br /><span class="smaller-75">Text displayed on the Login-Button</span></label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="login_button_text" name="login_button_text" placeholder="Login Button Text"
-								   value="<?php echo plugin_config_get( 'login_button_text' ); ?>">
+								   value="<?php echo plugin_config_get( 'login_button_text', '' ); ?>">
 						</div>
 					</div>
 
@@ -73,7 +73,7 @@ print_manage_menu( 'manage_plugin_page.php' );
 						<label for="hide_credentials_login" class="col-sm-3 control-label label-info label-white">Hide Credentials Login<br /><span class="smaller-75">MantisBT's default login mask will be hidden on login screen.</span></label>
 						<div class="col-sm-7">
 							<input type="checkbox" class="form-control" id="hide_credentials_login" name="hide_credentials_login"
-								   value="hide_credentials_login" <?php if ("true" == plugin_config_get( 'hide_credentials_login' )) echo "checked"; ?>>
+								   value="hide_credentials_login" <?php if ("true" == plugin_config_get( 'hide_credentials_login', 'false' )) echo "checked"; ?>>
 						</div>
 					</div>
 
@@ -81,7 +81,7 @@ print_manage_menu( 'manage_plugin_page.php' );
 						<label for="auto_login" class="col-sm-3 control-label label-info label-white">Auto Login<br /><span class="smaller-75">Directly redirect to this plugin's login routine. No buttons have to be clicked.</span></label>
 						<div class="col-sm-7">
 							<input type="checkbox" class="form-control" id="auto_login" name="auto_login"
-								   value="auto_login" <?php if ("true" == plugin_config_get( 'auto_login' )) echo "checked"; ?>>
+								   value="auto_login" <?php if ("true" == plugin_config_get( 'auto_login', 'false' )) echo "checked"; ?>>
 						</div>
 					</div>
 

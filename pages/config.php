@@ -23,7 +23,7 @@ print_manage_menu( 'manage_plugin_page.php' );
                         Create a new client in your OpenIDConnect environment
                     </li>
                     <li>Use the following redirect URL<br>
-						<code><?php echo substr(config_get('path'), 0, -1).plugin_page( 'redirect'); ?></code>
+						<code><?php echo substr(config_get('path'), 0, -1).plugin_page( 'redirect'); ?></code> <span>(Be aware that there might be more URLs if your MantisBT is available at multiple URLs. Add <b>ALL</b> of them to your OpenID-Client!)</span>
                     </li>
                 </ol>
             </div>

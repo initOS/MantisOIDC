@@ -37,8 +37,7 @@ class MantisOIDCPlugin extends MantisPlugin {
 	function config() {
 		return array(
 			'clientId'     => '',
-			'clientSecret' => '',
-			'redirect_uri' => '', # is set once the config page is saved
+			'clientSecret' => ''
 		);
 	}
 

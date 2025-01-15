@@ -18,7 +18,7 @@
     );
 
 
-    $oidc->setRedirectUrl(plugin_config_get('redirect_uri' ));
+    $oidc->setRedirectUrl(substr(config_get('path'), 0, -1).plugin_page( 'redirect'));
 
 
     $oidc->authenticate();

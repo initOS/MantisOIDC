@@ -91,4 +91,6 @@
         $redirect_url .= "index.php";
     }
 
-    print_header_redirect( $redirect_url );
+    // remove forward-slash from the end (could happen when accessing manage overview page) remove it to prevent a broken URL
+
+    print_header_redirect( rtrim($redirect_url, "/") );

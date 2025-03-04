@@ -1,13 +1,10 @@
 <?php
 
     // retrieve the data for the desired page a user wants to access. it is here at the beginning because a successful login will start a new (maybe empty) session
-    session_start();
     $get_stash = $_SESSION["plugin_MantisOIDC_get_param_stash"];
-
 
     require_once 'assets/lib/OpenID-Connect-PHP/vendor/autoload.php';
     use Jumbojett\OpenIDConnectClient;
-
 
     plugin_register('MantisOIDC');
 
@@ -24,12 +21,9 @@
 
     $oidc->authenticate();
 
-
     $access_token = $oidc->getAccessToken();
 
     $data = $oidc->introspectToken($access_token);
-
-
 
     $user_id = user_get_id_by_name($data->username);
 
@@ -49,7 +43,6 @@
     if( user_is_anonymous( $user_id ) ) {
         $login_success = false;
     }
-
 
     // user is not able to access MantisBT. Show error message
     if(false === $login_success) {
@@ -82,15 +75,14 @@
 
     // Obtain the redicrect url
     // Example: state=view.php?id=2222
-    $redirect_url = '../../../';
+    $redirect_url = '../../..';
 
     // add get-params if the user was about to access a certain page
     if(!empty($get_stash) && isset($get_stash["return"])) {
         $redirect_url .= $get_stash["return"];
     } else {
-        $redirect_url .= "index.php";
+        $redirect_url .= "/index.php";
     }
 
     // remove forward-slash from the end (could happen when accessing manage overview page) remove it to prevent a broken URL
-
     print_header_redirect( rtrim($redirect_url, "/") );

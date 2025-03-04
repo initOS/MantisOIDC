@@ -46,8 +46,9 @@ class MantisOIDCPlugin extends MantisPlugin {
             return '';
         }
 
-
         if ("true" == plugin_config_get('auto_login', FALSE)) {
+            // stash deep link so user can access the desired page after logging in
+            $_SESSION["plugin_MantisOIDC_get_param_stash"] = $_GET;
             print_header_redirect(plugin_page('oidcStart'));
         } else {
 

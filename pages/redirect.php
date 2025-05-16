@@ -85,4 +85,5 @@
     }
 
     // remove forward-slash from the end (could happen when accessing manage overview page) remove it to prevent a broken URL
-    print_header_redirect( rtrim($redirect_url, "/") );
+    // sanitize because Mantis sometimes provides a raw-encoded string (e.g. for manage_overview_page) that needs to be decoded before
+    print_header_redirect( string_sanitize_url(rtrim($redirect_url, "/")) );

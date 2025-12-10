@@ -56,7 +56,7 @@ print_manage_menu( 'manage_plugin_page.php' );
 					<div class="form-group">
 						<label for="oidc_role" class="col-sm-3 control-label label-info label-white">User Role<br /><span class="smaller-75">Role in you OIDC system a user has to have, to successfully login into MantisBT. Leave empty if every user is allowed to login (as long as they have an MantisBT account).</span></label>
 						<div class="col-sm-7">
-							<input type="password" class="form-control" id="oidc_role" name="oidc_role" placeholder="Client Secret"
+							<input type="password" class="form-control" id="oidc_role" name="oidc_role" placeholder="User Role"
 								   value="<?php echo plugin_config_get( 'oidc_role', '' ); ?>">
 						</div>
 					</div>
